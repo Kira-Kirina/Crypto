@@ -1,0 +1,18 @@
+.nav-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  background: #009688;
+  height: 76px;
+  padding: 10px 15px;
+}
+.nav-title {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  & a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+  }
+}

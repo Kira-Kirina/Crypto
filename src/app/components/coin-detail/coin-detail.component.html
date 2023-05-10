@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 details">
+      <div class="img">
+        <img [src]="coinData?.image?.large" alt="coinData.id" />
+        <h3 class="text-center">{{ coinData?.name }}</h3>
+        <h6 [innerHTML]="coinData?.description?.en.split('. ')[0]"></h6>
+        <div class="more-details">
+          <span class="title">Rank: </span>
+          <span class="value">{{ coinData?.market_cap_rank }}</span
+          ><br />
+          <span class="title">Current Price: </span>
+          <span class="value">
+            {{
+              (currency === "INR"
+                ? coinData?.market_data.current_price.inr
+                : coinData?.market_data.current_price.usd
+              ) | currency : currency
+            }}</span
+          ><br />
+          <span class="title">Market Cap: </span>
+          <span class="value">
+            {{
+              (currency === "INR"
+                ? coinData?.market_data.market_cap.inr
+                : coinData?.market_data.market_cap.usd
+              ) | currency : currency
+            }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <canvas
+        style="width: 300px"
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="lineChartType"
+      ></canvas>
+      <div class="d-flex justify-content-around mt-3">
+        <button
+          [class.active]="days === 1"
+          (click)="getGraph(1)"
+          class="btn btn-custom"
+        >
+          1 Day
+        </button>
+        <button
+          [class.active]="days === 30"
+          (click)="getGraph(30)"
+          class="btn btn-custom"
+        >
+          30 Days
+        </button>
+        <button
+          [class.active]="days === 90"
+          (click)="getGraph(90)"
+          class="btn btn-custom"
+        >
+          90 Days
+        </button>
+        <button
+          [class.active]="days === 365"
+          (click)="getGraph(365)"
+          class="btn btn-custom"
+        >
+          365 Days
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
